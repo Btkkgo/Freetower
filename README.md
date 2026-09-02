@@ -10,8 +10,6 @@ Freetower is a seven-civilization building and open-world creation game designed
 
 The long-term premise is simple: start from an ancient mythological civilization and build the future that only your civilization could create. The seven civilizations share a common foundation of survival, production, construction, exploration, technology, and era progression, while each follows its own cultural and mythological direction.
 
-The project is being organized around this direction. No public MMO, live service, or investment product is being announced here.
-
 ## Current Development
 
 Freetower is currently in the planning stage. Development tasks are being planned, created, scoped, and sequenced before the next implementation phase begins.
