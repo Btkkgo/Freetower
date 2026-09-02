@@ -1,6 +1,6 @@
 # Freetower
 
-**Build a civilization. Reach the Tower. Create the world.**
+**Build a free crypto island 🏝️**
 
 English
 
