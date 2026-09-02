@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tower"]
+albedo_color = Color(0.86, 0.88, 0.86, 1)
+roughness = 0.55
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_base"]
+top_radius = 5.5
+bottom_radius = 8.5
+height = 14.0
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_spire"]
+top_radius = 0.7
+bottom_radius = 3.8
+height = 22.0
+radial_segments = 16
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+inner_radius = 5.8
+outer_radius = 7.2
+rings = 24
+ring_segments = 10
+
+[sub_resource type="SphereMesh" id="SphereMesh_core"]
+radius = 2.6
+height = 5.2
+radial_segments = 16
+rings = 8
+
+[node name="Freetower_Blockout" type="Node3D"]
+
+[node name="TowerBase" type="MeshInstance3D" parent="."]
+position = Vector3(0, 7, 0)
+mesh = SubResource("CylinderMesh_base")
+material_override = SubResource("StandardMaterial3D_tower")
+
+[node name="TowerSpire" type="MeshInstance3D" parent="."]
+position = Vector3(0, 24, 0)
+mesh = SubResource("CylinderMesh_spire")
+material_override = SubResource("StandardMaterial3D_tower")
+
+[node name="LowerRing" type="MeshInstance3D" parent="."]
+position = Vector3(0, 14, 0)
+mesh = SubResource("TorusMesh_ring")
+material_override = SubResource("StandardMaterial3D_tower")
+
+[node name="UpperRing" type="MeshInstance3D" parent="."]
+position = Vector3(0, 32, 0)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("TorusMesh_ring")
+material_override = SubResource("StandardMaterial3D_tower")
+
+[node name="FloatingCore" type="MeshInstance3D" parent="."]
+position = Vector3(0, 39, 0)
+mesh = SubResource("SphereMesh_core")
+material_override = SubResource("StandardMaterial3D_tower")
