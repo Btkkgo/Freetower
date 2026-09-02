@@ -260,6 +260,10 @@ Bitcoin manages identity, ownership, and important proofs. The game server manag
 
 No specific release dates are promised.
 
+![Freetower long-term roadmap concept](./public/assets/freetower/roadmap/freetower-roadmap-concept.png)
+
+This concept image visualizes the long-term direction from a first camp and settlement to civilization-scale cooperation, ocean routes, the Freetower, structured AI creation, and a future identity layer. It is a concept image, not a representation of implemented features.
+
 ### Phase 1 — Survival & Civilization Building Prototype
 
 Third-person exploration, resource gathering, survival, crafting, building, settlement growth, exploration, and the civilization foundation.

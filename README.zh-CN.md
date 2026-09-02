@@ -260,6 +260,10 @@ Bitcoin 管理身份、所有权和重要证明；游戏服务器管理高频游
 
 不承诺具体发布日期。
 
+![Freetower 长期路线图概念图](./public/assets/freetower/roadmap/freetower-roadmap-concept.png)
+
+这张概念图以视觉方式表达从营地与聚落，到文明协作、海洋航线、Freetower、结构化 AI 创作和未来身份层的长期方向。它是概念图，不代表当前功能已实现。
+
 ### Phase 1 — 生存与文明建设原型
 
 第三人称探索、资源采集、生存、制造、建筑建造、聚落发展、探索和文明基础框架。
