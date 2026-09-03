@@ -5,3 +5,4 @@ Free Tower development notes preserve engineering evidence, visual-review outcom
 | Devlog | English | 简体中文 | Status | Date |
 | --- | --- | --- | --- | --- |
 | #001 — Rebuilding the World-Building Pipeline | [Read](./001-world-building-pipeline/README.md) | [阅读](./001-world-building-pipeline/README.zh-CN.md) | Published on GitHub | 2026-09-03 |
+| #002 — Building a Deterministic World Generation Foundation | [Read](./002-world-generation-foundation/README.md) | [阅读](./002-world-generation-foundation/README.zh-CN.md) | Published on GitHub | 2026-09-03 |
