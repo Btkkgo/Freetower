@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rock"]
+radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 4
+
+[node name="DebugRockProxy" type="MeshInstance3D"]
+scale = Vector3(1.3, 0.7, 1)
+mesh = SubResource("SphereMesh_rock")

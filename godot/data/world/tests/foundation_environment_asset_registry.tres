@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="EnvironmentAssetRegistry" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/environment_asset_registry.gd" id="1_registry"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/environment_asset_definition.gd" id="2_asset"]
+[ext_resource type="PackedScene" path="res://scenes/world/tests/debug_tree_proxy.tscn" id="3_tree"]
+[ext_resource type="PackedScene" path="res://scenes/world/tests/debug_bamboo_proxy.tscn" id="4_bamboo"]
+[ext_resource type="PackedScene" path="res://scenes/world/tests/debug_rock_proxy.tscn" id="5_rock"]
+
+[sub_resource type="Resource" id="Resource_tree"]
+script = ExtResource("2_asset")
+asset_id = "debug_tree_proxy"
+display_name = "DEBUG_PROXY Tree"
+packed_scene = ExtResource("3_tree")
+asset_tags = PackedStringArray("tree", "vegetation")
+allowed_biomes = PackedStringArray("grassland", "forest", "river_bank")
+scale_min = 0.75
+scale_max = 1.3
+rotation_mode = "YAW"
+is_debug_proxy = true
+production_approved = false
+asset_revision = "foundation-v1"
+source_reference = "WORLD-003 engineering proxy"
+
+[sub_resource type="Resource" id="Resource_bamboo"]
+script = ExtResource("2_asset")
+asset_id = "debug_bamboo_proxy"
+display_name = "DEBUG_PROXY Bamboo"
+packed_scene = ExtResource("4_bamboo")
+asset_tags = PackedStringArray("bamboo", "vegetation")
+allowed_biomes = PackedStringArray("bamboo")
+scale_min = 0.8
+scale_max = 1.25
+rotation_mode = "YAW"
+is_debug_proxy = true
+production_approved = false
+asset_revision = "foundation-v1"
+source_reference = "WORLD-003 engineering proxy"
+
+[sub_resource type="Resource" id="Resource_rock"]
+script = ExtResource("2_asset")
+asset_id = "debug_rock_proxy"
+display_name = "DEBUG_PROXY Rock"
+packed_scene = ExtResource("5_rock")
+asset_tags = PackedStringArray("rock")
+allowed_biomes = PackedStringArray("rock_hill", "coast", "ruins")
+scale_min = 0.65
+scale_max = 1.45
+rotation_mode = "YAW"
+slope_max = 90.0
+is_debug_proxy = true
+production_approved = false
+asset_revision = "foundation-v1"
+source_reference = "WORLD-003 engineering proxy"
+
+[resource]
+script = ExtResource("1_registry")
+registry_id = "foundation_environment_assets"
+assets = Array[Resource]([SubResource("Resource_tree"), SubResource("Resource_bamboo"), SubResource("Resource_rock")])

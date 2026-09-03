@@ -1,0 +1,319 @@
+[gd_resource type="Resource" script_class="MapDefinition" load_steps=29 format=3]
+
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/map_definition.gd" id="1_map"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/biome_definition.gd" id="2_biome"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/spline_feature_definition.gd" id="3_spline"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/poi_definition.gd" id="4_poi"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/world_exclusion_zone.gd" id="5_exclusion"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/terrain_control_region.gd" id="6_region"]
+[ext_resource type="Script" path="res://scripts/world_generation/definitions/sightline_definition.gd" id="7_sightline"]
+
+[sub_resource type="Resource" id="Biome_grassland"]
+script = ExtResource("2_biome")
+biome_id = "grassland"
+display_name = "Foundation Grassland"
+priority = 10
+height_min = -4.0
+height_max = 18.0
+slope_max = 35.0
+density_multiplier = 0.45
+asset_tags = PackedStringArray("tree")
+region_center = Vector2(-25, -25)
+region_size = Vector2(50, 50)
+debug_color = Color(0.42, 0.72, 0.35, 1)
+
+[sub_resource type="Resource" id="Biome_forest"]
+script = ExtResource("2_biome")
+biome_id = "forest"
+display_name = "Foundation Forest"
+priority = 20
+height_min = -4.0
+height_max = 18.0
+slope_max = 42.0
+density_multiplier = 1.0
+asset_tags = PackedStringArray("tree")
+region_center = Vector2(17, -22)
+region_size = Vector2(38, 48)
+debug_color = Color(0.15, 0.43, 0.2, 1)
+
+[sub_resource type="Resource" id="Biome_bamboo"]
+script = ExtResource("2_biome")
+biome_id = "bamboo"
+display_name = "Foundation Bamboo"
+priority = 30
+height_min = -4.0
+height_max = 18.0
+slope_max = 38.0
+density_multiplier = 0.9
+asset_tags = PackedStringArray("bamboo")
+region_center = Vector2(-29, 21)
+region_size = Vector2(28, 30)
+debug_color = Color(0.45, 0.75, 0.28, 1)
+
+[sub_resource type="Resource" id="Biome_rock_hill"]
+script = ExtResource("2_biome")
+biome_id = "rock_hill"
+display_name = "Foundation Rock Hill"
+priority = 40
+height_min = 2.0
+height_max = 18.0
+slope_max = 90.0
+density_multiplier = 0.5
+asset_tags = PackedStringArray("rock")
+region_center = Vector2(22, 20)
+region_size = Vector2(34, 30)
+debug_color = Color(0.42, 0.43, 0.46, 1)
+
+[sub_resource type="Resource" id="Biome_river_bank"]
+script = ExtResource("2_biome")
+biome_id = "river_bank"
+display_name = "Foundation River Bank"
+priority = 70
+height_min = -4.0
+height_max = 8.0
+slope_max = 55.0
+distance_to_water_max = 6.0
+density_multiplier = 0.35
+asset_tags = PackedStringArray("tree")
+region_size = Vector2(100, 100)
+debug_color = Color(0.31, 0.57, 0.42, 1)
+
+[sub_resource type="Resource" id="Biome_coast"]
+script = ExtResource("2_biome")
+biome_id = "coast"
+display_name = "Foundation Coast"
+priority = 60
+height_min = -4.0
+height_max = 8.0
+slope_max = 60.0
+density_multiplier = 0.2
+asset_tags = PackedStringArray("rock")
+region_center = Vector2(0, 45)
+region_size = Vector2(100, 10)
+debug_color = Color(0.78, 0.7, 0.48, 1)
+
+[sub_resource type="Resource" id="Biome_ruins"]
+script = ExtResource("2_biome")
+biome_id = "ruins"
+display_name = "Foundation Ruins"
+priority = 50
+height_min = -4.0
+height_max = 18.0
+slope_max = 35.0
+density_multiplier = 0.15
+asset_tags = PackedStringArray("rock")
+region_center = Vector2(-8, 11)
+region_size = Vector2(22, 18)
+debug_color = Color(0.55, 0.48, 0.38, 1)
+
+[sub_resource type="Resource" id="Spline_river"]
+script = ExtResource("3_spline")
+feature_id = "foundation_river"
+feature_type = "RIVER"
+control_points = PackedVector3Array(-46, 0, -12, -20, 0, -8, 2, 0, 2, 25, 0, 12, 46, 0, 18)
+width = 4.0
+depth = 2.2
+bank_width = 4.0
+falloff = 1.0
+terrain_influence = 1.0
+vegetation_exclusion_radius = 3.0
+rock_influence_radius = 5.0
+navigation_cost = 2.0
+
+[sub_resource type="Resource" id="Spline_coast"]
+script = ExtResource("3_spline")
+feature_id = "foundation_coast"
+feature_type = "COAST"
+control_points = PackedVector3Array(-50, 0, 42, -15, 0, 44, 18, 0, 41, 50, 0, 43)
+width = 3.0
+depth = 1.0
+bank_width = 5.0
+falloff = 1.0
+terrain_influence = 0.8
+vegetation_exclusion_radius = 4.0
+rock_influence_radius = 6.0
+navigation_cost = 3.0
+
+[sub_resource type="Resource" id="POI_spawn"]
+script = ExtResource("4_poi")
+poi_id = "foundation_spawn"
+poi_type = "SPAWN"
+position = Vector3(-40, 0, -36)
+radius = 3.0
+required_clearance = 4.0
+vegetation_exclusion_radius = 6.0
+sightline_height = 1.7
+
+[sub_resource type="Resource" id="POI_forest"]
+script = ExtResource("4_poi")
+poi_id = "foundation_forest_view"
+poi_type = "ANCIENT_BANYAN"
+position = Vector3(13, 1, -22)
+radius = 3.0
+vegetation_exclusion_radius = 4.0
+sightline_height = 2.0
+
+[sub_resource type="Resource" id="POI_hill"]
+script = ExtResource("4_poi")
+poi_id = "foundation_stone_hill"
+poi_type = "STONE_HILL_VIEWPOINT"
+position = Vector3(24, 8, 20)
+radius = 3.0
+vegetation_exclusion_radius = 4.0
+sightline_height = 1.7
+
+[sub_resource type="Resource" id="POI_ruins"]
+script = ExtResource("4_poi")
+poi_id = "foundation_ruins"
+poi_type = "ANCIENT_RUINS"
+position = Vector3(-8, 2, 11)
+radius = 5.0
+required_clearance = 5.0
+vegetation_exclusion_radius = 6.0
+sightline_height = 1.7
+
+[sub_resource type="Resource" id="POI_landmark"]
+script = ExtResource("4_poi")
+poi_id = "foundation_landmark_anchor"
+poi_type = "FREE_TOWER_SIGHTLINE_ANCHOR"
+position = Vector3(36, 10, 32)
+radius = 3.0
+vegetation_exclusion_radius = 5.0
+sightline_height = 10.0
+
+[sub_resource type="Resource" id="Exclusion_spawn"]
+script = ExtResource("5_exclusion")
+zone_id = "foundation_spawn_clearance"
+shape = "CIRCLE"
+center = Vector3(-40, 0, -36)
+radius = 7.0
+tags = PackedStringArray("spawn", "vegetation")
+reason = "Engineering spawn clearance"
+
+[sub_resource type="Resource" id="Exclusion_ruins"]
+script = ExtResource("5_exclusion")
+zone_id = "foundation_ruins_clearance"
+shape = "BOX"
+center = Vector3(-8, 0, 11)
+size = Vector3(14, 1, 12)
+tags = PackedStringArray("ruins", "vegetation")
+reason = "Engineering ruins footprint"
+
+[sub_resource type="Resource" id="Region_base"]
+script = ExtResource("6_region")
+region_id = "foundation_base_flat"
+region_type = "FLAT"
+center = Vector2(0, 0)
+size = Vector2(100, 100)
+target_height = 0.0
+falloff = 0.0
+priority = 0
+
+[sub_resource type="Resource" id="Region_slope"]
+script = ExtResource("6_region")
+region_id = "foundation_slope"
+region_type = "SLOPE"
+center = Vector2(-25, 10)
+size = Vector2(30, 35)
+target_height = 0.0
+secondary_height = 4.0
+falloff = 4.0
+priority = 10
+
+[sub_resource type="Resource" id="Region_hill"]
+script = ExtResource("6_region")
+region_id = "foundation_highland"
+region_type = "RAISE"
+center = Vector2(24, 20)
+size = Vector2(34, 30)
+target_height = 9.0
+falloff = 7.0
+priority = 20
+
+[sub_resource type="Resource" id="Region_low"]
+script = ExtResource("6_region")
+region_id = "foundation_lowland"
+region_type = "LOWER"
+center = Vector2(-5, -4)
+size = Vector2(34, 20)
+target_height = -1.5
+falloff = 5.0
+priority = 30
+
+[sub_resource type="Resource" id="Sightline_spawn"]
+script = ExtResource("7_sightline")
+sightline_id = "foundation_spawn_to_landmark"
+source_poi_id = "foundation_spawn"
+target_poi_id = "foundation_landmark_anchor"
+required_visibility = "CLEAR"
+max_allowed_occlusion = 0.1
+clearance_width = 3.0
+sample_count = 32
+
+[sub_resource type="Resource" id="Sightline_forest"]
+script = ExtResource("7_sightline")
+sightline_id = "foundation_forest_to_landmark"
+source_poi_id = "foundation_forest_view"
+target_poi_id = "foundation_landmark_anchor"
+required_visibility = "PARTIAL"
+max_allowed_occlusion = 0.6
+clearance_width = 3.0
+sample_count = 32
+
+[sub_resource type="Resource" id="Sightline_hill"]
+script = ExtResource("7_sightline")
+sightline_id = "foundation_hill_to_landmark"
+source_poi_id = "foundation_stone_hill"
+target_poi_id = "foundation_landmark_anchor"
+required_visibility = "CLEAR"
+max_allowed_occlusion = 0.1
+clearance_width = 3.0
+sample_count = 32
+
+[sub_resource type="Resource" id="Sightline_ruins"]
+script = ExtResource("7_sightline")
+sightline_id = "foundation_ruins_to_landmark"
+source_poi_id = "foundation_ruins"
+target_poi_id = "foundation_landmark_anchor"
+required_visibility = "CLEAR"
+max_allowed_occlusion = 0.1
+clearance_width = 3.0
+sample_count = 32
+
+[resource]
+script = ExtResource("1_map")
+map_id = "world_generation_foundation_test"
+display_name = "WORLD-003 Engineering Sandbox"
+seed = 3003
+generation_revision = "world-003-v1"
+world_size = Vector2(100, 100)
+terrain_height_min = -4.0
+terrain_height_max = 18.0
+terrain_resolution = 101
+spawn_position = Vector3(-40, 0, -36)
+naturalization_amplitude = 0.35
+naturalization_frequency = 0.045
+biomes = Array[Resource]([SubResource("Biome_grassland"), SubResource("Biome_forest"), SubResource("Biome_bamboo"), SubResource("Biome_rock_hill"), SubResource("Biome_river_bank"), SubResource("Biome_coast"), SubResource("Biome_ruins")])
+spline_features = Array[Resource]([SubResource("Spline_river"), SubResource("Spline_coast")])
+points_of_interest = Array[Resource]([SubResource("POI_spawn"), SubResource("POI_forest"), SubResource("POI_hill"), SubResource("POI_ruins"), SubResource("POI_landmark")])
+exclusion_zones = Array[Resource]([SubResource("Exclusion_spawn"), SubResource("Exclusion_ruins")])
+terrain_control_regions = Array[Resource]([SubResource("Region_base"), SubResource("Region_slope"), SubResource("Region_hill"), SubResource("Region_low")])
+sightlines = Array[Resource]([SubResource("Sightline_spawn"), SubResource("Sightline_forest"), SubResource("Sightline_hill"), SubResource("Sightline_ruins")])
+review_viewpoints = Array[Dictionary]([{
+"fov": 58.0,
+"id": "spawn",
+"position": Vector3(-43, 12, -47)
+}, {
+"fov": 55.0,
+"id": "forest",
+"position": Vector3(7, 9, -34)
+}, {
+"fov": 60.0,
+"id": "stone_hill",
+"position": Vector3(31, 18, 29)
+}, {
+"fov": 55.0,
+"id": "ruins",
+"position": Vector3(-20, 10, 18)
+}])
+landmark_targets = PackedStringArray("foundation_landmark_anchor")

@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scenes/world/tests/world_generation_foundation_test.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/world/tests/world_generation_foundation_test.tres" id="2_map"]
+[ext_resource type="Resource" path="res://data/world/tests/foundation_environment_asset_registry.tres" id="3_registry"]
+[ext_resource type="Terrain3DAssets" path="res://scenes/world/tests/data/integration_terrain_assets.tres" id="4_assets"]
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_foundation"]
+world_background = 0
+auto_shader = false
+dual_scaling = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_foundation"]
+sky_top_color = Color(0.18, 0.39, 0.68, 1)
+sky_horizon_color = Color(0.72, 0.84, 0.94, 1)
+ground_bottom_color = Color(0.12, 0.15, 0.12, 1)
+ground_horizon_color = Color(0.55, 0.64, 0.58, 1)
+
+[sub_resource type="Sky" id="Sky_foundation"]
+sky_material = SubResource("ProceduralSkyMaterial_foundation")
+
+[sub_resource type="Environment" id="Environment_foundation"]
+background_mode = 2
+sky = SubResource("Sky_foundation")
+ambient_light_source = 3
+ambient_light_color = Color(0.66, 0.76, 0.9, 1)
+ambient_light_energy = 0.7
+tonemap_mode = 2
+
+[node name="WorldGenerationFoundationTest" type="Node3D"]
+script = ExtResource("1_script")
+map_definition = ExtResource("2_map")
+asset_registry = ExtResource("3_registry")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+region_size = 256
+vertex_spacing = 0.5
+material = SubResource("Terrain3DMaterial_foundation")
+assets = ExtResource("4_assets")
+top_level = true
+
+[node name="GeneratedOutput" type="Node3D" parent="."]
+
+[node name="DebugLandmarkMarker" type="CSGCylinder3D" parent="."]
+position = Vector3(36, 10, 32)
+radius = 1.5
+height = 20.0
+sides = 8
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+rotation_degrees = Vector3(-52, -32, 0)
+light_color = Color(1, 0.91, 0.76, 1)
+light_energy = 1.35
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_foundation")
+
+[node name="ReviewCameras" type="Node3D" parent="."]
+
+[node name="ReviewCamera_Spawn" type="Camera3D" parent="ReviewCameras"]
+position = Vector3(-43, 12, -47)
+rotation_degrees = Vector3(-12, -132, 0)
+current = true
+fov = 58.0
+far = 220.0
+
+[node name="ReviewCamera_Forest" type="Camera3D" parent="ReviewCameras"]
+position = Vector3(7, 9, -34)
+rotation_degrees = Vector3(-8, -155, 0)
+fov = 55.0
+far = 220.0
+
+[node name="ReviewCamera_StoneHill" type="Camera3D" parent="ReviewCameras"]
+position = Vector3(31, 18, 29)
+rotation_degrees = Vector3(-18, 45, 0)
+fov = 60.0
+far = 220.0
+
+[node name="ReviewCamera_Ruins" type="Camera3D" parent="ReviewCameras"]
+position = Vector3(-20, 10, 18)
+rotation_degrees = Vector3(-10, -102, 0)
+fov = 55.0
+far = 220.0
+
+[node name="DebugOverlay" type="CanvasLayer" parent="."]
+
+[node name="Margin" type="MarginContainer" parent="DebugOverlay"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 780.0
+offset_bottom = 130.0
+
+[node name="Label" type="Label" parent="DebugOverlay/Margin"]
+text = "WORLD-003 ENGINEERING SANDBOX\nGenerating..."

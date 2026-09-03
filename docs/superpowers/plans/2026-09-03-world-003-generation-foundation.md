@@ -40,7 +40,7 @@
 - Produces: `CanonicalData.sha256(value: Variant) -> String`
 - Produces: a headless runner that discovers and executes test methods in a stable order and exits non-zero on failure.
 
-- [ ] **Step 1: Write failing canonicalization tests**
+- [x] **Step 1: Write failing canonicalization tests**
 
 ```gdscript
 func test_dictionary_key_order_is_stable() -> void:
@@ -52,17 +52,17 @@ func test_runtime_fields_are_excluded() -> void:
     assert_equal(CanonicalData.sha256(left), CanonicalData.sha256(right))
 ```
 
-- [ ] **Step 2: Run the new test runner and verify it fails because `CanonicalData` does not exist**
+- [x] **Step 2: Run the new test runner and verify it fails because `CanonicalData` does not exist**
 
 Run: `/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/world_generation/world_generation_test_runner.gd`
 
 Expected: non-zero exit with an unresolved `CanonicalData` reference.
 
-- [ ] **Step 3: Implement canonical recursion, stable dictionary sorting, six-decimal float quantization, vector/transform arrays, runtime-field exclusion, JSON encoding, and SHA-256**
+- [x] **Step 3: Implement canonical recursion, stable dictionary sorting, six-decimal float quantization, vector/transform arrays, runtime-field exclusion, JSON encoding, and SHA-256**
 
 Runtime exclusions are exactly `duration_ms`, `renderer`, `adapter`, `display_server`, `process_id`, `node_instance_id`, `capture_path`, `timestamp`, `generated_node_count`, and `multimesh_count`.
 
-- [ ] **Step 4: Run the canonical tests and verify they pass**
+- [x] **Step 4: Run the canonical tests and verify they pass**
 
 Run the headless command from Step 2; expected: `WORLD003_TEST_RESULT=PASS`.
 
@@ -86,7 +86,7 @@ Run the headless command from Step 2; expected: `WORLD003_TEST_RESULT=PASS`.
 - Produces: stable enum names for spline, POI, exclusion, terrain-region, rotation, and sightline types.
 - Consumes: `CanonicalData` for deterministic representations.
 
-- [ ] **Step 1: Write failing Resource construction and canonical-data tests**
+- [x] **Step 1: Write failing Resource construction and canonical-data tests**
 
 ```gdscript
 func test_map_definition_keeps_stable_ids() -> void:
@@ -96,13 +96,13 @@ func test_map_definition_keeps_stable_ids() -> void:
     assert_equal(map.to_canonical_data().biome_ids, ["forest", "grassland"])
 ```
 
-- [ ] **Step 2: Run headless tests and confirm Resource classes are unresolved**
+- [x] **Step 2: Run headless tests and confirm Resource classes are unresolved**
 
-- [ ] **Step 3: Implement each Resource with stable IDs rather than cyclic Resource references**
+- [x] **Step 3: Implement each Resource with stable IDs rather than cyclic Resource references**
 
 `MapDefinition` owns authoring arrays but cross-links such as sightline endpoints, allowed biomes, and assets remain strings or string arrays. Every Resource exposes deterministic data without runtime objects.
 
-- [ ] **Step 4: Run headless tests and confirm construction and canonical representations pass**
+- [x] **Step 4: Run headless tests and confirm construction and canonical representations pass**
 
 ### Task 3: Implement fail-fast definition and registry validation
 
@@ -115,7 +115,7 @@ func test_map_definition_keeps_stable_ids() -> void:
 - Produces: `validate(map_definition: MapDefinition, registries: Dictionary) -> Array[Dictionary]`.
 - Error shape: `{code: String, resource_id: String, field: String, message: String}` sorted by code, ID, and field.
 
-- [ ] **Step 1: Write tests for valid data, invalid map size, duplicate biome/POI/asset IDs, out-of-bounds POI, invalid spline width, and invalid exclusion geometry**
+- [x] **Step 1: Write tests for valid data, invalid map size, duplicate biome/POI/asset IDs, out-of-bounds POI, invalid spline width, and invalid exclusion geometry**
 
 ```gdscript
 func test_duplicate_biome_id_is_rejected() -> void:
@@ -123,11 +123,11 @@ func test_duplicate_biome_id_is_rejected() -> void:
     assert_has_error(errors, "DUPLICATE_BIOME_ID")
 ```
 
-- [ ] **Step 2: Run the validator suite and verify all new cases fail**
+- [x] **Step 2: Run the validator suite and verify all new cases fail**
 
-- [ ] **Step 3: Implement range, uniqueness, bounds, spline, exclusion, stable-reference, and asset validation**
+- [x] **Step 3: Implement range, uniqueness, bounds, spline, exclusion, stable-reference, and asset validation**
 
-- [ ] **Step 4: Run the suite and verify deterministic fail-fast errors pass**
+- [x] **Step 4: Run the suite and verify deterministic fail-fast errors pass**
 
 ### Task 4: Implement the asset registry, production gate, context, and report
 
@@ -145,13 +145,13 @@ func test_duplicate_biome_id_is_rejected() -> void:
 - `WorldGenerationReport.deterministic_data() -> Dictionary`
 - `WorldGenerationReport.finalize_hash() -> String`
 
-- [ ] **Step 1: Write failing tests for stable lookup, missing IDs, duplicate IDs, debug-proxy rejection, unapproved-asset rejection, RNG namespaces, and runtime-field-independent report hashing**
+- [x] **Step 1: Write failing tests for stable lookup, missing IDs, duplicate IDs, debug-proxy rejection, unapproved-asset rejection, RNG namespaces, and runtime-field-independent report hashing**
 
-- [ ] **Step 2: Run and observe the missing implementations**
+- [x] **Step 2: Run and observe the missing implementations**
 
-- [ ] **Step 3: Implement deterministic registry resolution, `MISSING APPROVED ASSET`, local RNG derivation, report fields, and canonical hashing**
+- [x] **Step 3: Implement deterministic registry resolution, `MISSING APPROVED ASSET`, local RNG derivation, report fields, and canonical hashing**
 
-- [ ] **Step 4: Run tests and verify all registry/context/report cases pass**
+- [x] **Step 4: Run tests and verify all registry/context/report cases pass**
 
 ### Task 5: Implement human terrain, spline influence, bounded naturalization, and the Terrain3D Adapter
 
@@ -172,15 +172,15 @@ func test_duplicate_biome_id_is_rejected() -> void:
 - `Terrain3DAdapter.sample_height(position: Vector3) -> float`
 - `Terrain3DAdapter.sample_slope_degrees(position: Vector3) -> float`
 
-- [ ] **Step 1: Write failing tests for flat/high/low/slope/valley control regions, spline macro stability, bounded noise, seed-dependent naturalization, and plugin-boundary behavior**
+- [x] **Step 1: Write failing tests for flat/high/low/slope/valley control regions, spline macro stability, bounded noise, seed-dependent naturalization, and plugin-boundary behavior**
 
-- [ ] **Step 2: Run tests and confirm missing generators/Adapter fail**
+- [x] **Step 2: Run tests and confirm missing generators/Adapter fail**
 
-- [ ] **Step 3: Implement deterministic human-region composition, fixed spline sampling, and FastNoiseLite micro-variation clamped to configured amplitude**
+- [x] **Step 3: Implement deterministic human-region composition, fixed spline sampling, and FastNoiseLite micro-variation clamped to configured amplitude**
 
-- [ ] **Step 4: Implement `Terrain3DAdapter` as the only class containing Terrain3D calls and keep all writes inside Sandbox-owned data**
+- [x] **Step 4: Implement `Terrain3DAdapter` as the only class containing Terrain3D calls and keep all writes inside Sandbox-owned data**
 
-- [ ] **Step 5: Run headless terrain tests and the existing Terrain3D integration scene**
+- [x] **Step 5: Run headless terrain tests and the existing Terrain3D integration scene**
 
 Expected: bounded-noise and macro-layout invariants pass; WORLD-002 reports `WORLD002_RESULT=PASS`.
 
@@ -196,15 +196,15 @@ Expected: bounded-noise and macro-layout invariants pass; WORLD-002 reports `WOR
 - `EnvironmentScatterGenerator.generate(context: WorldGenerationContext, samples: Dictionary, parent: Node3D) -> Dictionary`
 - Scatter result: `{placements: Array, asset_instance_counts: Dictionary, excluded_count: int, invalid_count: int, multimesh_count: int}`.
 
-- [ ] **Step 1: Write failing tests for biome, slope, height, spline, exclusion, POI-clearance, same-seed transform equality, and different-seed naturalization**
+- [x] **Step 1: Write failing tests for biome, slope, height, spline, exclusion, POI-clearance, same-seed transform equality, and different-seed naturalization**
 
-- [ ] **Step 2: Run and verify failures occur before implementation**
+- [x] **Step 2: Run and verify failures occur before implementation**
 
-- [ ] **Step 3: Implement canonical grid traversal, seeded jitter, stable filtering, asset selection, scale, and rotation**
+- [x] **Step 3: Implement canonical grid traversal, seeded jitter, stable filtering, asset selection, scale, and rotation**
 
-- [ ] **Step 4: Group at least one high-density debug asset into `MultiMeshInstance3D` and forbid per-instance scene nodes**
+- [x] **Step 4: Group at least one high-density debug asset into `MultiMeshInstance3D` and forbid per-instance scene nodes**
 
-- [ ] **Step 5: Run tests and verify deterministic transforms and MultiMesh output pass**
+- [x] **Step 5: Run tests and verify deterministic transforms and MultiMesh output pass**
 
 ### Task 7: Implement fixed-sample sightline validation
 
@@ -216,7 +216,7 @@ Expected: bounded-noise and macro-layout invariants pass; WORLD-002 reports `WOR
 - `SightlineValidator.validate(definition: SightlineDefinition, poi_index: Dictionary, height_provider: Callable, occluders: Array) -> Dictionary`
 - Result: `{sightline_id: String, classification: String, occluded_samples: int, sample_count: int, occlusion_ratio: float, requirement_met: bool}`.
 
-- [ ] **Step 1: Write exact CLEAR, PARTIAL, and BLOCKED fixtures using 32 samples and threshold boundary cases**
+- [x] **Step 1: Write exact CLEAR, PARTIAL, and BLOCKED fixtures using 32 samples and threshold boundary cases**
 
 ```gdscript
 func test_partial_sightline() -> void:
@@ -225,11 +225,11 @@ func test_partial_sightline() -> void:
     assert_equal(result.sample_count, 32)
 ```
 
-- [ ] **Step 2: Run and confirm the missing validator fails**
+- [x] **Step 2: Run and confirm the missing validator fails**
 
-- [ ] **Step 3: Implement fixed interior samples, 0.25 m clearance comparison, clearance-width occluders, ratio calculation, and fixed thresholds**
+- [x] **Step 3: Implement fixed interior samples, 0.25 m clearance comparison, clearance-width occluders, ratio calculation, and fixed thresholds**
 
-- [ ] **Step 4: Run sightline tests and verify classification boundaries pass**
+- [x] **Step 4: Run sightline tests and verify classification boundaries pass**
 
 ### Task 8: Implement the WorldGenerator coordinator
 
@@ -241,7 +241,7 @@ func test_partial_sightline() -> void:
 - `WorldGenerator.generate(map_definition: MapDefinition, registries: Dictionary, terrain_adapter: Terrain3DAdapter, output_root: Node3D, options: Dictionary = {}) -> WorldGenerationReport`
 - Produces the exact 11-stage order from the design and stops before mutation on validation errors.
 
-- [ ] **Step 1: Write a failing orchestration test with recording fakes**
+- [x] **Step 1: Write a failing orchestration test with recording fakes**
 
 ```gdscript
 func test_generation_order_is_fixed() -> void:
@@ -250,11 +250,11 @@ func test_generation_order_is_fixed() -> void:
     assert_true(report.errors.is_empty())
 ```
 
-- [ ] **Step 2: Run and verify the coordinator test fails**
+- [x] **Step 2: Run and verify the coordinator test fails**
 
-- [ ] **Step 3: Implement orchestration without moving subsystem behavior into the coordinator**
+- [x] **Step 3: Implement orchestration without moving subsystem behavior into the coordinator**
 
-- [ ] **Step 4: Add fail-fast and idempotent generated-root replacement tests and make them pass**
+- [x] **Step 4: Add fail-fast and idempotent generated-root replacement tests and make them pass**
 
 ### Task 9: Build the isolated Sandbox Resources, proxies, scene, cameras, and optional overlay
 
@@ -273,17 +273,17 @@ func test_generation_order_is_fixed() -> void:
 - Sandbox controller consumes the test `MapDefinition`, registry, and Terrain3D node, runs once on scene initialization, prints a machine-readable report, and exits under `WORLD003_AUTOCLOSE=1`.
 - Environment seed override: `WORLD003_SEED`.
 
-- [ ] **Step 1: Add a scene-load test and verify it fails before the scene exists**
+- [x] **Step 1: Add a scene-load test and verify it fails before the scene exists**
 
-- [ ] **Step 2: Create the approximately 100 m by 100 m test data with seven biome types, River, Coast, four or more POIs, two or more exclusions, and three or more sightlines**
+- [x] **Step 2: Create the approximately 100 m by 100 m test data with seven biome types, River, Coast, four or more POIs, two or more exclusions, and three or more sightlines**
 
-- [ ] **Step 3: Create debug proxies with registry flags `is_debug_proxy = true` and `production_approved = false`**
+- [x] **Step 3: Create debug proxies with registry flags `is_debug_proxy = true` and `production_approved = false`**
 
-- [ ] **Step 4: Assemble the isolated Terrain3D Sandbox and fixed `ReviewCamera_Spawn`, `ReviewCamera_Forest`, `ReviewCamera_StoneHill`, and `ReviewCamera_Ruins` nodes**
+- [x] **Step 4: Assemble the isolated Terrain3D Sandbox and fixed `ReviewCamera_Spawn`, `ReviewCamera_Forest`, `ReviewCamera_StoneHill`, and `ReviewCamera_Ruins` nodes**
 
-- [ ] **Step 5: Add the small engineering overlay only if it remains isolated and does not add game UI dependencies**
+- [x] **Step 5: Add the small engineering overlay only if it remains isolated and does not add game UI dependencies**
 
-- [ ] **Step 6: Run headless scene-load validation and verify there are no missing resources or script errors**
+- [x] **Step 6: Run headless scene-load validation and verify there are no missing resources or script errors**
 
 ### Task 10: Complete the 30-case test suite and runtime evidence
 
@@ -294,33 +294,33 @@ func test_generation_order_is_fixed() -> void:
 **Interfaces:**
 - Produces a summary with `tests`, `passed`, `failed`, and `WORLD003_TEST_RESULT`.
 
-- [ ] **Step 1: Map each of the 30 required acceptance cases to a named test method and add any missing test first**
+- [x] **Step 1: Map each of the 30 required acceptance cases to a named test method and add any missing test first**
 
-- [ ] **Step 2: Run the complete headless suite**
+- [x] **Step 2: Run the complete headless suite**
 
 Run: `/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/world_generation/world_generation_test_runner.gd`
 
 Expected: at least 30 named tests, zero failures, `WORLD003_TEST_RESULT=PASS`.
 
-- [ ] **Step 3: Run editor/import validation**
+- [x] **Step 3: Run editor/import validation**
 
 Run: `/Applications/Godot.app/Contents/MacOS/Godot --editor --headless --path godot --quit-after 8`
 
 Expected: exit 0, no parse error, missing dependency, or fatal shader error.
 
-- [ ] **Step 4: Run Seed A three separate times through the Vulkan Sandbox**
+- [x] **Step 4: Run Seed A three separate times through the Vulkan Sandbox**
 
 Run three times: `WORLD003_AUTOCLOSE=1 WORLD003_SEED=3003 /Applications/Godot.app/Contents/MacOS/Godot --path godot --editor-pid 0 res://scenes/world/tests/WorldGenerationFoundationTest.tscn`
 
 Expected: all three outputs have the same generation hash, instance counts, and sightline results.
 
-- [ ] **Step 5: Run Seed B and verify only naturalization output changes**
+- [x] **Step 5: Run Seed B and verify only naturalization output changes**
 
 Run: `WORLD003_AUTOCLOSE=1 WORLD003_SEED=4004 /Applications/Godot.app/Contents/MacOS/Godot --path godot --editor-pid 0 res://scenes/world/tests/WorldGenerationFoundationTest.tscn`
 
 Expected: generation hash differs; canonical POI positions and River control points equal Seed A.
 
-- [ ] **Step 6: Run the existing Terrain3D integration scene and unchanged Game scene**
+- [x] **Step 6: Run the existing Terrain3D integration scene and unchanged Game scene**
 
 Run: `WORLD002_FAST=1 WORLD002_AUTOCLOSE=1 /Applications/Godot.app/Contents/MacOS/Godot --path godot res://scenes/world/tests/Terrain3DIntegrationTest.tscn`
 
@@ -337,21 +337,21 @@ Expected: WORLD-002 PASS; Game scene exits without parse, dependency, or fatal s
 **Interfaces:**
 - Documents architecture, data model, generation order, Terrain3D boundary, biome/spline/registry models, determinism, production gate, sightlines, Sandbox, limitations, and WORLD-004 interface.
 
-- [ ] **Step 1: Write concise implementation documentation without restating the full Free Tower PRD**
+- [x] **Step 1: Write concise implementation documentation without restating the full Free Tower PRD**
 
-- [ ] **Step 2: Verify protected file hashes against base commit**
+- [x] **Step 2: Verify protected file hashes against base commit**
 
 Run: `git diff 719df1498c4ba53196af7f8a71d11e3cba598dc0 -- godot/scenes/world/World_VerticalSlice_01.tscn godot/scenes/game/Game.tscn godot/addons/terrain_3d docs/build-in-public docs/devlog docs/design/decisions`
 
 Expected: no output.
 
-- [ ] **Step 3: Run final Git and contamination checks**
+- [x] **Step 3: Run final Git and contamination checks**
 
 Run: `git status --short`, `git diff --check`, and `git diff --stat 719df1498c4ba53196af7f8a71d11e3cba598dc0`.
 
 Expected: only WORLD-003 scripts, Resources, Sandbox, tests, design/plan documents, and `godot/docs/world-generation.md`.
 
-- [ ] **Step 4: Precisely stage implementation files and create the required local commit**
+- [x] **Step 4: Precisely stage implementation files and create the required local commit**
 
 Run explicit `git add` paths for WORLD-003-owned files, then:
 
@@ -359,7 +359,7 @@ Run explicit `git add` paths for WORLD-003-owned files, then:
 git commit -m "feat: add world generation foundation"
 ```
 
-- [ ] **Step 5: Verify the final branch without pushing**
+- [x] **Step 5: Verify the final branch without pushing**
 
 Run: `git status --short`, `git log --oneline --decorate -5`, and `git branch --show-current`.
 
