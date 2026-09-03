@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Terrain3DAssets" path="res://scenes/world/tests/data/integration_terrain_assets.tres" id="1_assets"]
+[ext_resource type="Script" path="res://scenes/world/tests/terrain3d_integration_validation.gd" id="2_validation"]
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_integration"]
+world_background = 0
+auto_shader = false
+dual_scaling = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_integration"]
+sky_top_color = Color(0.18, 0.39, 0.68, 1)
+sky_horizon_color = Color(0.72, 0.84, 0.94, 1)
+ground_bottom_color = Color(0.12, 0.15, 0.12, 1)
+ground_horizon_color = Color(0.55, 0.64, 0.58, 1)
+
+[sub_resource type="Sky" id="Sky_integration"]
+sky_material = SubResource("ProceduralSkyMaterial_integration")
+
+[sub_resource type="Environment" id="Environment_integration"]
+background_mode = 2
+sky = SubResource("Sky_integration")
+ambient_light_source = 3
+ambient_light_color = Color(0.66, 0.76, 0.9, 1)
+ambient_light_energy = 0.7
+tonemap_mode = 2
+
+[node name="Terrain3DIntegrationTest" type="Node3D"]
+script = ExtResource("2_validation")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+region_size = 256
+vertex_spacing = 0.25
+data_directory = "res://scenes/world/tests/data/integration_terrain_data"
+material = SubResource("Terrain3DMaterial_integration")
+assets = ExtResource("1_assets")
+top_level = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+rotation_degrees = Vector3(-52, -32, 0)
+light_color = Color(1, 0.91, 0.76, 1)
+light_energy = 1.35
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_integration")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(32, 20, 60)
+current = true
+fov = 58.0
+far = 180.0

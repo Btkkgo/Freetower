@@ -1,0 +1,18 @@
+[gd_resource type="Terrain3DAssets" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://scenes/world/tests/data/integration_terrain_albedo_height.png" id="1_albedo"]
+[ext_resource type="Texture2D" path="res://scenes/world/tests/data/integration_terrain_normal_roughness.png" id="2_normal"]
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_integration"]
+name = "Integration Grass"
+albedo_color = Color(0.92, 1, 0.9, 1)
+albedo_texture = ExtResource("1_albedo")
+normal_texture = ExtResource("2_normal")
+normal_depth = 0.35
+ao_strength = 0.6
+roughness = 0.05
+uv_scale = 0.18
+detiling_rotation = 0.12
+
+[resource]
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_integration")])

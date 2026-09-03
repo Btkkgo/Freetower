@@ -16,6 +16,10 @@ window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [input]
 
 move_forward={
@@ -101,6 +105,7 @@ pause={
 
 [rendering]
 
+rendering_device/driver.macos="vulkan"
 renderer/rendering_method="forward_plus"
 renderer/rendering_method.mobile="forward_plus"
 environment/defaults/default_clear_color=Color(0.31, 0.53, 0.78, 1)

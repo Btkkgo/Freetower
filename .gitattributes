@@ -1,0 +1,3 @@
+# Keep the pinned upstream Terrain3D release byte-for-byte intact while
+# excluding its published whitespace style from this repository's diff gate.
+godot/addons/terrain_3d/** whitespace=-trailing-space,-space-before-tab
