@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bamboo"]
+top_radius = 0.11
+bottom_radius = 0.14
+height = 2.7
+radial_segments = 5
+
+[node name="DebugBambooProxy" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_bamboo")

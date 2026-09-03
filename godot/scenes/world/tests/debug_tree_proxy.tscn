@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tree"]
+top_radius = 0.28
+bottom_radius = 0.42
+height = 3.2
+radial_segments = 6
+
+[node name="DebugTreeProxy" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_tree")
