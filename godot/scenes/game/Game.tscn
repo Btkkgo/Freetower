@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/world/World_VerticalSlice_01.tscn" id="1_world"]
+
+[node name="Game" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="World_VerticalSlice_01" parent="World" instance=ExtResource("1_world")]
+
+[node name="DebugMarkers" type="Node3D" parent="."]
